@@ -1,0 +1,18 @@
+<div class="links">
+<% for link in links %>
+<p><%= link_to_link link, :class => 'icon icon-link', :download => true, :title => "<PSDATEN>/#{link.fileaddress}" -%>
+<%= h(" - #{link.description}") unless link.description.blank? %>
+  <span class="size">(<%= number_to_human_size link.filesize %>)</span>
+  <% if options[:deletable] %>
+    <%= link_to image_tag('delete.png'), link_path(link),
+                                         :confirm => l(:text_are_you_sure),
+                                         :method => :delete,
+                                         :class => 'delete',
+                                         :title => l(:button_delete) %>
+  <% end %>
+  <% if options[:author] %>
+    <span class="author"><%= h(link.author) %>, <%= format_time(link.created_on) %></span>
+  <% end %>
+  </p>
+<% end %>
+</div>

@@ -1,0 +1,3 @@
+= onevision_links
+
+The method show_details() in issue_helper has to be modified, but this method is already overwritten in ov_fields. So some modifications reside there.

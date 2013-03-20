@@ -1,0 +1,10 @@
+# English strings go here for Rails i18n
+en:
+  label_link_plural: "Links"
+  label_fileaddress: "File Address"
+  label_link: "Link"
+  label_add_another_link: "Add another link"
+  warning_links_not_saved: "%{count} link(s) could not be saved."
+  label_create_link: "Link"
+  label_link_browse: "Browse for links"
+  current_folder: "Current folder"

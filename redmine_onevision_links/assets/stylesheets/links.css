@@ -1,0 +1,8 @@
+#links_fields input.description {margin-left: 8px; width:340px;}
+#links_fields span {display:block; white-space:nowrap;}
+#links_fields img {vertical-align: middle;}
+
+div.links { margin-top: 12px; }
+div.links p { margin:4px 0 2px 0; }
+div.links img { vertical-align: middle; }
+div.links span.author { font-size: 0.9em; color: #888; }

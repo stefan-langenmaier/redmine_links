@@ -1,0 +1,22 @@
+<% content_for :header_tags do %>
+	<%= javascript_include_tag "links.js", :plugin => "redmine_onevision_links" %>
+	<%= stylesheet_link_tag "links", :plugin => "redmine_onevision_links" %>
+<% end %>
+
+<% if defined?(container) && container && container.saved_links %>
+  <% container.saved_links.each_with_index do |link, i| %>
+    <span class="icon icon-attachment" style="display:block; line-height:1.5em;">
+      <%= h(link.filename) %> (<%= number_to_human_size(link.filesize) %>)
+      <%= hidden_field_tag "links[p#{i}][token]", "#{link.id}.#{link.digest}" %>
+    </span>
+  <% end %>
+<% end %>
+<span id="links_fields">
+  <span>
+	<%= text_field_tag 'links[1][fileaddress]', '', :size => 30, :id => nil, :class => 'file'  -%>
+	<%= text_field_tag 'links[1][description]', '', :id => nil, :class => 'description', :placeholder => l(:label_optional_description) %>
+	<%= link_to_function(image_tag('delete.png'), 'removeLinkField(this)', :title => (l(:button_delete))) %>
+  </span>
+</span>
+<span class="add_link"><%= link_to l(:label_add_another_link), '#', :onclick => 'addLinkField(); return false;', :class => 'add_link' %>
+(<%= l(:label_max_size) %>: &#8734; Byte)</span>

@@ -1,0 +1,52 @@
+<h2><%=l(:label_link_browse)%></h2>
+<p><b><%=l(:current_folder)%>:</b>&lt;PSDATEN&gt;/<%= @current_folder_short.to_s%></p>
+
+
+<table class="list">
+		<thead><tr>
+			<th>Name</th>
+			<th>Size</th>
+			<th>Date</th>
+			<th>Action</th>
+		</tr></thead>
+		<tbody>
+			<% unless (@base_folder == @current_folder) %>
+			<tr>
+  				<td>
+  					<%= link_to "..", :controller => 'links', :action => 'browse', :path => File.realpath("..", @current_folder).sub(@base_folder, "")+"/" %>
+  				</td>
+  				<td></td>
+  				<td></td>
+  				<td></td>
+  			</tr>
+  			<% end %>
+  			<% begin %>
+				<% Dir.entries(@current_folder).sort.each do |item| %>
+	  			<% next if item == '.' or item == '..' %>
+	  			<% f = File.join(@current_folder, item)%>
+	  			<% next unless File.readable?(f) %>
+	  			<tr>
+	  				<td>
+	  					<% if File.directory?(f) %>
+	  					<%= link_to File.basename(f), :controller => 'links', :action => 'browse', :path => "#{@current_folder_short}#{File.basename(f)}/" %>
+	  					<% else %>
+	  					<%= File.basename(f) %>
+	  					<% end %>
+	  				</td>
+	  				<td><%= number_to_human_size(File.size(f).to_i) %></td>
+	  				<td><%= format_time(File.mtime(f)) %></td>
+	  				<td>
+					  	<% unless File.directory?(f) %>
+	  					<%= link_to l(:label_create_link), :controller => 'links', :action => 'add', :path => "#{@current_folder_short}#{File.basename(f)}" %>
+	  					<% end %>
+	  				</td>
+	  			</tr>
+				<% end %>
+			<% rescue %>
+			<% end%>
+ 		</tbody>
+	
+
+</table>
+
+<% html_title(l(:label_link_browse)) -%>

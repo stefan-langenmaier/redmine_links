@@ -1,0 +1,10 @@
+# English strings go here for Rails i18n
+de:
+  label_link_plural: "Verknüpfungen"
+  label_fileaddress: "Datei-Adresse"
+  label_link: "Verknüpfung"
+  label_add_another_link: "Eine weitere Verknüpfung hinzufügen"
+  warning_links_not_saved: "%{count} Verknüpfung(en) konnten nicht gespeichert werden."
+  label_create_link: "Verknüpfen"
+  label_link_browse: "Nach Verknüpfungen suchen"
+  current_folder: "Aktuelles Verzeichnis"
